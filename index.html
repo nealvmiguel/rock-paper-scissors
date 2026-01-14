@@ -4,8 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./style.css" />
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
-    <script src="./script.js"></script>
+    <main>
+      <nav>
+        <h1>ROCK PAPER SCISSORS</h1>
+      </nav>
+      <section class="game">
+        <div class="score">
+          <h2>Human Score: 0</h2>
+          <h2>Computer Score: 0</h2>
+        </div>
+        <div class="game-center">
+          <div class="display">
+            <p class="human-choice">
+              <i class="fa-regular fa-hand-back-fist"></i>
+            </p>
+            <h2>Computer win</h2>
+            <p class="computer-choice"><i class="fa-regular fa-hand"></i></p>
+          </div>
+          <div class="btn-container">
+            <button class="btn btn-rock">
+              <i class="fa-regular fa-hand-back-fist"></i>
+            </button>
+            <button class="btn btn-paper">
+              <i class="fa-regular fa-hand"></i>
+            </button>
+            <button class="btn btn-scissors">
+              <i class="fa-regular fa-hand-scissors"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script1.js"></script>
   </body>
 </html>
