@@ -112,11 +112,6 @@ body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
 }
 
-.btn:active {
-  transform: translateY(0);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-
 /* 
 ===========
 CONTAINER
@@ -169,7 +164,25 @@ nav h1 {
   max-width: 600px;
   width: 100%;
 }
-
-.display p {
+.display .player-choice i,
+.display .computer-choice i {
   font-size: 10rem;
+}
+.result {
+  font-size: 1.2rem;
+}
+/* 
+============
+GAME MECHANICS
+============
+*/
+
+.player-choice,
+.computer-choice {
+  display: none;
+}
+
+.player-choice.is-active,
+.computer-choice.is-active {
+  display: inline-block;
 }

@@ -1,66 +1,104 @@
-let humanScore = 0;
-let computerScore = 0;
+'use strict';
+
+const humanScore = document.querySelector('.human-score');
+const computerScore = document.querySelector('.computer-score');
+const computerChoices = document.querySelectorAll('.computer-choice');
+const playerChoices = document.querySelectorAll('.player-choice');
+const result = document.querySelector('.result');
+const btnContainer = document.querySelector('.btn-container');
+let playerScore = 0;
+let computerScoreValue = 0;
+const WIN_SCORE = 5;
 
 function getComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3);
 
   switch (randomNumber) {
     case 0:
-      return 'ROCK';
+      return 'rock';
     case 1:
-      return 'PAPER';
+      return 'paper';
     case 2:
-      return 'SCISSORS';
+      return 'scissors';
   }
 }
 
-function getHumanChoice() {
-  return prompt('rock, paper, scissors').toLowerCase();
+function setActiveChoice(choices, selectedChoice) {
+  choices.forEach((choice) => {
+    choice.classList.toggle(
+      'is-active',
+      choice.dataset.choice === selectedChoice
+    );
+  });
 }
 
-function playRound(humanChoice, computerChoice) {
-  if (humanChoice === computerChoice) {
-    console.log('=================');
-    console.log("IT'S A TIE!!!");
-    console.log('=================');
+function updateScores(winner) {
+  if (winner === 'player') {
+    playerScore++;
+    humanScore.textContent = `PLAYER SCORE: ${playerScore}`;
   }
+
+  if (winner === 'computer') {
+    computerScoreValue++;
+    computerScore.textContent = `COMPUTER SCORE: ${computerScoreValue}`;
+  }
+}
+
+function getRoundWinner(playerChoice, computerChoice) {
+  if (playerChoice === computerChoice) return 'tie';
 
   if (
-    (humanChoice === 'paper' && computerChoice === 'rock') ||
-    (humanChoice === 'rock' && computerChoice === 'scissors') ||
-    (humanChoice === 'scissors' && computerChoice === 'paper')
+    (playerChoice === 'paper' && computerChoice === 'rock') ||
+    (playerChoice === 'rock' && computerChoice === 'scissors') ||
+    (playerChoice === 'scissors' && computerChoice === 'paper')
   ) {
-    console.log('=================');
-    console.log('Human score!!!!!');
-    console.log('=================');
-    humanScore++;
-  } else {
-    console.log('=================');
-    console.log('Computer score!!!!!');
-    console.log('=================');
-    computerScore++;
+    return 'player';
   }
+
+  return 'computer';
 }
 
-function playGame() {
-  while (humanScore < 5 && computerScore < 5) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-
-    playRound(humanSelection, computerSelection);
-
-    console.log(`Human Score: ${humanScore}`);
-    console.log(`Computer Score: ${computerScore}`);
+function announceWinner(winner) {
+  if (winner === 'tie') {
+    result.textContent = "It's a tie!";
+    return;
   }
 
-  console.log('=================================');
-  if (humanScore === 5) {
-    console.log('Human wins the game!');
-  } else {
-    console.log('Computer wins the game!');
-  }
-  console.log(`Human Final Score: ${humanScore}`);
-  console.log(`Computer FInal Score: ${computerScore}`);
+  result.textContent =
+    winner === 'player' ? 'Player scores!' : 'Computer scores!';
 }
 
-playGame();
+function checkGameOver() {
+  if (playerScore === WIN_SCORE) {
+    result.textContent = 'PLAYER WINS THE GAME!';
+    return true;
+  }
+
+  if (computerScoreValue === WIN_SCORE) {
+    result.textContent = 'COMPUTER WINS THE GAME!';
+    return true;
+  }
+
+  return false;
+}
+
+function playRound(playerChoice) {
+  const isGameOver = checkGameOver();
+  if (isGameOver) return;
+
+  const computerChoice = getComputerChoice();
+  const winner = getRoundWinner(playerChoice, computerChoice);
+
+  setActiveChoice(playerChoices, playerChoice);
+  setActiveChoice(computerChoices, computerChoice);
+
+  updateScores(winner);
+  announceWinner(winner);
+}
+
+btnContainer.addEventListener('click', (e) => {
+  const button = e.target.closest('.btn');
+  if (!button) return;
+
+  playRound(button.dataset.choice);
+});

@@ -22,25 +22,45 @@
       </nav>
       <section class="game">
         <div class="score">
-          <h2>Human Score: 0</h2>
-          <h2>Computer Score: 0</h2>
+          <h2 class="human-score">Player Score: 0</h2>
+          <h2 class="computer-score">Computer Score: 0</h2>
         </div>
         <div class="game-center">
-          <div class="display">
-            <p class="human-choice">
-              <i class="fa-regular fa-hand-back-fist"></i>
-            </p>
-            <h2>Computer win</h2>
-            <p class="computer-choice"><i class="fa-regular fa-hand"></i></p>
-          </div>
+          <section class="display">
+            <div class="player">
+              <span class="player-choice" data-choice="rock">
+                <i class="fa-regular fa-hand-back-fist"></i>
+              </span>
+              <span class="player-choice" data-choice="scissors">
+                <i class="fa-regular fa-hand-scissors"></i>
+              </span>
+              <span class="player-choice" data-choice="paper">
+                <i class="fa-regular fa-hand"></i>
+              </span>
+            </div>
+
+            <p class="result">Computer win</p>
+
+            <div class="computer">
+              <span class="computer-choice rock" data-choice="rock">
+                <i class="fa-regular fa-hand-back-fist"></i>
+              </span>
+              <span class="computer-choice scissors" data-choice="scissors">
+                <i class="fa-regular fa-hand-scissors"></i>
+              </span>
+              <span class="computer-choice paper" data-choice="paper">
+                <i class="fa-regular fa-hand"></i>
+              </span>
+            </div>
+          </section>
           <div class="btn-container">
-            <button class="btn btn-rock">
+            <button class="btn btn-rock" data-choice="rock">
               <i class="fa-regular fa-hand-back-fist"></i>
             </button>
-            <button class="btn btn-paper">
+            <button class="btn btn-paper" data-choice="paper">
               <i class="fa-regular fa-hand"></i>
             </button>
-            <button class="btn btn-scissors">
+            <button class="btn btn-scissors" data-choice="scissors">
               <i class="fa-regular fa-hand-scissors"></i>
             </button>
           </div>
@@ -48,6 +68,6 @@
       </section>
     </main>
 
-    <script src="./script1.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>
