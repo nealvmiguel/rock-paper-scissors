@@ -27,7 +27,7 @@ function setActiveChoice(choices, selectedChoice) {
   choices.forEach((choice) => {
     choice.classList.toggle(
       'is-active',
-      choice.dataset.choice === selectedChoice
+      choice.dataset.choice === selectedChoice,
     );
   });
 }
@@ -58,7 +58,7 @@ function getRoundWinner(playerChoice, computerChoice) {
   return 'computer';
 }
 
-function announceWinner(winner) {
+function announceRoundWinner(winner) {
   if (winner === 'tie') {
     result.textContent = "It's a tie!";
     return;
@@ -93,7 +93,7 @@ function playRound(playerChoice) {
   setActiveChoice(computerChoices, computerChoice);
 
   updateScores(winner);
-  announceWinner(winner);
+  announceRoundWinner(winner);
 }
 
 btnContainer.addEventListener('click', (e) => {
