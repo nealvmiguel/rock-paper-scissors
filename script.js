@@ -44,20 +44,6 @@ function updateScores(winner) {
   }
 }
 
-function getRoundWinner(playerChoice, computerChoice) {
-  if (playerChoice === computerChoice) return 'tie';
-
-  if (
-    (playerChoice === 'paper' && computerChoice === 'rock') ||
-    (playerChoice === 'rock' && computerChoice === 'scissors') ||
-    (playerChoice === 'scissors' && computerChoice === 'paper')
-  ) {
-    return 'player';
-  }
-
-  return 'computer';
-}
-
 function announceRoundWinner(winner) {
   if (winner === 'tie') {
     result.textContent = "It's a tie!";
